@@ -7,6 +7,7 @@ import Vehicule from './components/Vehicule'
 import Stock from './components/Stock'
 import Comptabilite from './components/Comptabilite'
 import Agent from './components/Agent'
+import Utilisateur from './components/Utilisateur'
 
 const routes = [
     {
@@ -43,6 +44,11 @@ const routes = [
         path: '/agent',
         name: 'Agent',
         component: Agent
+    },
+    {
+        path: '/utilisateur',
+        name: 'Utilisateur',
+        component: Utilisateur
     },
 ]
 const router = createRouter({

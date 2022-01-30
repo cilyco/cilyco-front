@@ -2,7 +2,7 @@ import { createFetch } from '@vueuse/core'
 import { useUser } from "../store/user";
 
 export let useFetch = createFetch({
-    baseUrl: 'http://127.0.0.1',
+    baseUrl: 'http://127.0.0.1:3000',
     options: {
         async beforeFetch({ options }) {
             options.headers.Authorization = `Bearer ${useUser.token}`

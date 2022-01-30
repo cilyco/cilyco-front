@@ -1,44 +1,37 @@
 <template>
   <Layout style="height: 100%">
-    <LayoutSider breakpoint="lg" collapsed-width="0">
-      <div style="height: 50px; width: 100%; background-color: aqua; justify-content: center; padding: 10px">
+    <LayoutHeader style=" background-color: darkgrey; justify-items: right; justify-content: right; display: flex" >
+      <div style="height: 64px; width: 100%; background-color: aqua; justify-content: center; padding: 10px">
         Cilyco
       </div>
-      <TheSidebar/>
-    </LayoutSider>
-    <Layout>
-      <LayoutHeader  :style="{ background: '#fff', padding: 0 }" >
+      <div>
+          <span style="margin-left: 24px">
+            <a-badge :dot="true">
+              <a-avatar shape="square">
+                <template #icon><MessageOutlined /></template>
+              </a-avatar>
+            </a-badge>
+          </span>
+      </div>
+      <div>
+          <span style="margin-left: 24px; cursor: pointer">
+            <a-badge @click="router.push('/utilisateur')">
+              <a-avatar shape="square">
+                <template #icon><UserOutlined /></template>
+              </a-avatar>
+            </a-badge>
+          </span>
+      </div>
+    </LayoutHeader>
 
-      </LayoutHeader>
+    <Layout>
+      <LayoutSider breakpoint="lg" collapsed-width="0">
+        <TheSidebar/>
+      </LayoutSider>
+
       <LayoutContent style="padding: 24px;">
-        <a-page-header
-            :ghost="false"
-            title="Title"
-            sub-title="This is a subtitle"
-            @back="() => $router.go(-1)"
-        >
-          <template #extra>
-            <a-button key="3">Operation</a-button>
-            <a-button key="2">Operation</a-button>
-            <a-button key="1" type="primary">Primary</a-button>
-          </template>
-          <a-descriptions size="small" :column="3">
-            <a-descriptions-item label="Created">Lili Qu</a-descriptions-item>
-            <a-descriptions-item label="Association">
-              <a>421421</a>
-            </a-descriptions-item>
-            <a-descriptions-item label="Creation Time">2017-01-10</a-descriptions-item>
-            <a-descriptions-item label="Effective Time">2017-10-10</a-descriptions-item>
-            <a-descriptions-item label="Remarks">
-              Gonghu Road, Xihu District, Hangzhou, Zhejiang, China
-            </a-descriptions-item>
-          </a-descriptions>
-        </a-page-header>
         <router-view/>
       </LayoutContent>
-      <layout-footer>
-        test
-      </layout-footer>
     </Layout>
   </Layout>
 
@@ -46,7 +39,11 @@
 </template>
 
 <script setup>
-import { Layout, LayoutSider, LayoutHeader, LayoutContent, LayoutFooter } from "ant-design-vue";
+import { Layout, LayoutSider, LayoutHeader, LayoutContent } from "ant-design-vue";
 import TheSidebar from "./components/TheSidebar";
+import { UserOutlined, MessageOutlined } from '@ant-design/icons-vue';
+import {useRouter} from "vue-router";
+
+const router = useRouter()
 
 </script>

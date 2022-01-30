@@ -1,6 +1,6 @@
 <template>
   <div>
-    Stock
+    Utilisateur
   </div>
 </template>
 

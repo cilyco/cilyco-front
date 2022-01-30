@@ -12,16 +12,16 @@
     </a-menu-item>
     <a-sub-menu key="sub1">
       <template #icon>
-        <MailOutlined />
+        <SmileOutlined />
       </template>
       <template #title>Residents</template>
-      <a-menu-item key="2" to="/">Liste</a-menu-item>
+      <a-menu-item key="2" to="/resident">Liste</a-menu-item>
       <a-menu-item key="3" to="/">Repas</a-menu-item>
       <a-menu-item key="4" to="/">Inscription</a-menu-item>
     </a-sub-menu>
     <a-sub-menu key="sub2">
       <template #icon>
-        <MailOutlined />
+        <TeamOutlined />
       </template>
       <template #title>Agents</template>
       <a-menu-item key="5" to="/">Contrat</a-menu-item>
@@ -63,7 +63,7 @@
 
 <script setup>
 
-import { MailOutlined, PieChartOutlined, BarcodeOutlined, CarOutlined, CoffeeOutlined, HomeOutlined } from '@ant-design/icons-vue';
+import { PieChartOutlined, BarcodeOutlined, CarOutlined, CoffeeOutlined, HomeOutlined, SmileOutlined, TeamOutlined } from '@ant-design/icons-vue';
 import {useRouter} from "vue-router";
 
 // import {useUser} from "../store/user";
