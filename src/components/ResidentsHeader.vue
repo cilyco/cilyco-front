@@ -16,27 +16,27 @@
   </a-page-header>
 
   <a-drawer title="Ajouter un résident" :visible="isAddResident" @close="closeAddResident" width="400">
-    <a-form :model="formState" name="nest-messages" layout="vertical">
-      <a-form-item :name="['user', 'nom']" label="Nom" :rules="[{ required: true }]">
-        <a-input v-model:value="formState.user.nom" />
+    <a-form :model="resident" name="nest-messages" layout="vertical">
+      <a-form-item :name="['nom']" label="Nom" :rules="[{ required: true }]">
+        <a-input v-model:value="resident.nom" />
       </a-form-item>
-      <a-form-item :name="['user', 'prenom']" label="Prénom" :rules="[{ required: true }]">
-        <a-input v-model:value="formState.user.prenom" />
+      <a-form-item :name="['prenom']" label="Prénom" :rules="[{ required: true }]">
+        <a-input v-model:value="resident.prenom" />
       </a-form-item>
-      <a-form-item :name="['user', 'naissance']" label="Date Naissance">
-        <a-date-picker v-model:value="formState.user.naissance" value-format="DD-MM-YYYY" />
+      <a-form-item :name="['naissance']" label="Date Naissance">
+        <a-date-picker v-model:value="resident.naissance" value-format="DD-MM-YYYY" />
       </a-form-item>
-      <a-form-item :name="['user', 'commentaire']" label="Commentaire">
-        <a-textarea v-model:value="formState.user.commentaire" />
+      <a-form-item :name="['commentaire']" label="Commentaire">
+        <a-textarea v-model:value="resident.commentaire" />
       </a-form-item>
-      <a-form-item :name="['user', 'statut']" label="Statut">
-        <a-select v-model:value="formState.user.statut">
+      <a-form-item :name="['statut']" label="Statut">
+        <a-select v-model:value="resident.statut">
           <a-select-option value="jack">Déjà résident</a-select-option>
           <a-select-option value="lucy">Inscription</a-select-option>
         </a-select>
       </a-form-item>
       <a-form-item>
-        <a-button type="primary" html-type="submit">Ajout</a-button>
+        <a-button type="primary" html-type="submit" @click="postResident()">Ajout</a-button>
       </a-form-item>
     </a-form>
   </a-drawer>
@@ -45,7 +45,9 @@
 
 <script setup>
 
-import {ref,reactive} from "vue";
+import {ref, reactive} from "vue";
+
+import { useFetch } from "@/api/fetch";
 
 const isAddResident = ref(false)
 
@@ -57,15 +59,20 @@ const closeAddResident = () => {
   isAddResident.value = false
 }
 
-const formState = reactive({
-  user: {
-    nom: '',
-    prenom: '',
-    naissance: '22-12-2012',
-    commentaire: '',
-    statut: ''
-  },
+const resident = reactive({
+  nom: '',
+  prenom: '',
+  naissance: '22-12-2012',
+  commentaire: '',
+  statut: '',
+  type: 'resident'
 });
+
+const postResident = async () => {
+  console.log(resident)
+  const { data, error } = await useFetch("").post(JSON.stringify(resident), 'json').json()
+  console.log(data, error)
+}
 
 </script>
 

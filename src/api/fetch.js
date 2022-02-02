@@ -1,17 +1,23 @@
 import { createFetch } from '@vueuse/core'
-import { useUser } from "../store/user";
+// import { useUser } from "../store/user";
 
 export let useFetch = createFetch({
-    baseUrl: 'http://127.0.0.1:3000',
+    baseUrl: 'http://127.0.0.1:5984/test',
     options: {
         async beforeFetch({ options }) {
-            options.headers.Authorization = `Bearer ${useUser.token}`
+            // options.headers.Authorization = `Bearer ${useUser.token}`
+            options.headers = {
+                ...options.headers,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            }
 
+            console.log(options)
             return { options }
         },
     },
     fetchOptions: {
-        mode: 'cors',
+        mode: 'no-cors',
     },
 })
 
