@@ -47,7 +47,7 @@
 
 import {ref, reactive} from "vue";
 
-import { useFetch } from "@/api/fetch";
+import { api } from "@/api/fetch";
 
 const isAddResident = ref(false)
 
@@ -70,8 +70,8 @@ const resident = reactive({
 
 const postResident = async () => {
   console.log(resident)
-  const { data, error } = await useFetch("").post(JSON.stringify(resident), 'json').json()
-  console.log(data, error)
+  const res = await api({method: 'post', data: resident})
+  console.log(res)
 }
 
 </script>

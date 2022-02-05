@@ -1,4 +1,5 @@
 import { createFetch } from '@vueuse/core'
+import axios from "axios";
 // import { useUser } from "../store/user";
 
 export let useFetch = createFetch({
@@ -27,3 +28,8 @@ export let useFetchLogin = createFetch({
         mode: 'cors',
     },
 })
+
+export let api = axios.create({
+    baseURL: 'http://127.0.0.1:5984/test',
+    timeout: 1000,
+});
