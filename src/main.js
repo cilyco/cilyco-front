@@ -5,6 +5,6 @@ import router from './router.js'
 import AntDesign from 'ant-design-vue'
 
 createApp(App)
-    .use(router)
-    .use(AntDesign)
-    .mount('#app')
+  .use(router)
+  .use(AntDesign)
+  .mount('#app')

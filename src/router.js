@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from './components/Home.vue'
 import Cuisine from './components/Cuisine'
 import Residents from './components/Residents'
+import Resident from './components/Resident'
 import Vehicule from './components/Vehicule'
 import Stock from './components/Stock'
 import Comptabilite from './components/Comptabilite'
@@ -21,9 +22,14 @@ const routes = [
         component: Cuisine
     },
     {
-        path: '/resident',
-        name: 'Resident',
+        path: '/residents',
+        name: 'Residents',
         component: Residents
+    },
+    {
+        path: '/resident/:id',
+        name: 'Resident',
+        component: Resident
     },
     {
         path: '/vehicule',

@@ -15,7 +15,7 @@
         <SmileOutlined />
       </template>
       <template #title>Residents</template>
-      <a-menu-item key="2" to="/resident">Liste</a-menu-item>
+      <a-menu-item key="2" to="/residents">Liste</a-menu-item>
       <a-menu-item key="3" to="/">Repas</a-menu-item>
       <a-menu-item key="4" to="/">Inscription</a-menu-item>
     </a-sub-menu>

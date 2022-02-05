@@ -28,7 +28,9 @@
           </template>
           <a-list-item-meta :description="item.description">
             <template #title>
-              <a :href="item.href">{{ item.title }}</a>
+              <router-link :to="item.to">
+                {{ item.title }}
+              </router-link>
             </template>
             <template #avatar><a-avatar :src="item.avatar" /></template>
           </a-list-item-meta>
@@ -43,7 +45,9 @@
 <script setup>
 import { StarOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons-vue';
 import ResidentsHeader from "@/components/ResidentsHeader";
-
+import { v4 as uuidv4 } from 'uuid';
+import { createAvatar } from '@dicebear/avatars';
+import * as style from '@dicebear/big-ears-neutral';
 const pagination = {
   onChange: (page) => {
     console.log(page);
@@ -53,10 +57,14 @@ const pagination = {
 
 const listData = [];
 for (let i = 0; i < 23; i++) {
+  let svg = createAvatar(style, {
+    seed: uuidv4()
+  });
   listData.push({
     href: 'https://www.antdv.com/',
+    to: `/resident/${i}`,
     title: `ant design vue part ${i}`,
-    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+    avatar: svg,
     description:
         'Ant Design, a design language for background applications, is refined by Ant UED Team.',
     content:
