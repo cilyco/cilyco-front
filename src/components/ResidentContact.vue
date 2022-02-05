@@ -1,5 +1,7 @@
 <template>
   <div>
+    <a-button type="primary" @click="visible = true" style="margin-top: 10px">Ajouter un contact</a-button>
+    <a-divider>Contact</a-divider>
     <a-table :columns="columns" :data-source="data">
       <template #bodyCell="{ column }">
         <template v-if="column.key === 'action'">
@@ -12,7 +14,6 @@
         </p>
       </template>
     </a-table>
-    <a-button type="primary" @click="visible = true">Ajout contact</a-button>
     <a-drawer
         v-model:visible="visible"
         style="color: red"
@@ -21,18 +22,21 @@
         width="550"
     >
       <a-form :model="formState" name="validate_other" layout="vertical">
-        <a-form-item label="Plain Text">
-          <span class="ant-form-text">China</span>
+        <a-form-item name="nom" label="Nom">
+          <a-input v-model:value="contact.nom" placeholder="" />
         </a-form-item>
-        <a-form-item name="select" label="Select" has-feedback
-            :rules="[{ required: true, message: 'Please select your country!' }]"
-        >
-          <a-select v-model:value="formState.select" placeholder="Please select a country">
-            <a-select-option value="china">China</a-select-option>
-            <a-select-option value="usa">U.S.A</a-select-option>
-          </a-select>
+        <a-form-item name="prenom" label="Prenom">
+          <a-input v-model:value="contact.prenom" placeholder="" />
         </a-form-item>
-
+        <a-form-item name="telephone" label="Téléphone">
+          <a-input-group compact>
+            <a-select v-model:value="contact.prenom">
+              <a-select-option value="Option1">Option1</a-select-option>
+              <a-select-option value="Option2">Option2</a-select-option>
+            </a-select>
+            <a-input v-model:value="value6" style="width: 50%" />
+          </a-input-group>
+        </a-form-item>
         <a-form-item
             name="select-multiple"
             label="Select[multiple]"
@@ -60,20 +64,6 @@
           <a-switch v-model:checked="formState.switch" />
         </a-form-item>
 
-        <a-form-item name="slider" label="Slider">
-          <a-slider
-              v-model:value="formState.slider"
-              :marks="{
-                0: 'A',
-                20: 'B',
-                40: 'C',
-                60: 'D',
-                80: 'E',
-                100: 'F',
-              }"
-          />
-        </a-form-item>
-
         <a-form-item name="radio-group" label="Radio.Group">
           <a-radio-group v-model:value="formState['radio-group']">
             <a-radio value="a">item 1</a-radio>
@@ -82,59 +72,8 @@
           </a-radio-group>
         </a-form-item>
 
-        <a-form-item
-            name="radio-button"
-            label="Radio.Button"
-            :rules="[{ required: true, message: 'Please pick an item!' }]"
-        >
-          <a-radio-group v-model:value="formState['radio-button']">
-            <a-radio-button value="a">item 1</a-radio-button>
-            <a-radio-button value="b">item 2</a-radio-button>
-            <a-radio-button value="c">item 3</a-radio-button>
-          </a-radio-group>
-        </a-form-item>
-
-        <a-form-item name="checkbox-group" label="Checkbox.Group">
-          <a-checkbox-group v-model:value="formState['checkbox-group']">
-            <a-row>
-              <a-col :span="8">
-                <a-checkbox value="A" style="line-height: 32px">A</a-checkbox>
-              </a-col>
-              <a-col :span="8">
-                <a-checkbox value="B" style="line-height: 32px" disabled>B</a-checkbox>
-              </a-col>
-              <a-col :span="8">
-                <a-checkbox value="C" style="line-height: 32px">C</a-checkbox>
-              </a-col>
-              <a-col :span="8">
-                <a-checkbox value="D" style="line-height: 32px">D</a-checkbox>
-              </a-col>
-              <a-col :span="8">
-                <a-checkbox value="E" style="line-height: 32px">E</a-checkbox>
-              </a-col>
-              <a-col :span="8">
-                <a-checkbox value="F" style="line-height: 32px">F</a-checkbox>
-              </a-col>
-            </a-row>
-          </a-checkbox-group>
-        </a-form-item>
-
-        <a-form-item name="rate" label="Rate">
-          <a-rate v-model:value="formState.rate" allow-half />
-        </a-form-item>
-
-        <a-form-item name="upload" label="Upload" extra="longgggggggggggggggggggggggggggggggggg">
-          <a-upload
-              v-model:fileList="formState.upload"
-              name="logo"
-              action="/upload.do"
-              list-type="picture"
-          >
-            <a-button>
-              <template #icon><UploadOutlined /></template>
-              Click to upload
-            </a-button>
-          </a-upload>
+        <a-form-item name="commentaire" label="Commentaire">
+          <a-textarea v-model:value="contact.commentaire" placeholder="Basic usage" :rows="4" />
         </a-form-item>
 
         <a-form-item label="Dragger">
@@ -149,7 +88,7 @@
           </a-form-item>
         </a-form-item>
 
-        <a-form-item :wrapper-col="{ span: 12, offset: 6 }">
+        <a-form-item>
           <a-button type="primary" html-type="submit">Submit</a-button>
         </a-form-item>
       </a-form>
@@ -160,8 +99,7 @@
 <script setup>
 import {reactive, ref} from "vue";
 import {
-  InboxOutlined,
-  UploadOutlined
+  InboxOutlined
 } from '@ant-design/icons-vue';
 const visible = ref(false)
 const formState = reactive({
@@ -169,6 +107,14 @@ const formState = reactive({
   'checkbox-group': ['A', 'B'],
   rate: 3.5,
 });
+
+const contact = reactive({
+  nom: "",
+  prenom: "",
+  lien: "",
+  commentaire: "",
+  telephone: []
+})
 
 const columns = [{
   title: 'Name',
