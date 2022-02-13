@@ -2,6 +2,12 @@
   <div>
     <ResidentsHeader></ResidentsHeader>
     <a-divider>Residents</a-divider>
+    <a-input-search
+        v-model:value="searchInput"
+        placeholder="Nom, téléphone, ..."
+        enter-button="Recherche"
+        @search="onSearch"
+    />
     <a-list item-layout="vertical" size="large" :pagination="pagination" :data-source="listData">
       <template #renderItem="{ item }">
         <a-list-item key="item.title">
@@ -10,13 +16,20 @@
             <StarOutlined/>
             123
           </span>
-            <span>
+          <span>
             <LikeOutlined/>
             123
           </span>
             <span>
             <MessageOutlined/>
             123
+          </span>
+          <span>
+            <a-button type="primary" shape="round" size="small">
+              <template #icon>
+                <LoginOutlined />
+              </template>
+            </a-button>
           </span>
           </template>
           <template #extra>
@@ -30,6 +43,7 @@
             <template #title>
               <router-link :to="item.to">
                 {{ item.title }}
+                <a-tag color="warning">Admission</a-tag>
               </router-link>
             </template>
             <template #avatar><a-avatar :src="item.avatar" /></template>
@@ -43,17 +57,21 @@
 </template>
 
 <script setup>
-import { StarOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons-vue';
+import { StarOutlined, LikeOutlined, MessageOutlined, LoginOutlined } from '@ant-design/icons-vue';
 import ResidentsHeader from "@/components/ResidentsHeader";
 import { v4 as uuidv4 } from 'uuid';
 import { createAvatar } from '@dicebear/avatars';
 import * as style from '@dicebear/big-ears-neutral';
+import {ref} from "vue";
+
 const pagination = {
   onChange: (page) => {
     console.log(page);
   },
   pageSize: 3,
 };
+
+const searchInput = ref("")
 
 const listData = [];
 for (let i = 0; i < 23; i++) {

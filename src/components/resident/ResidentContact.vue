@@ -21,59 +21,49 @@
         placement="right"
         width="550"
     >
-      <a-form :model="formState" name="validate_other" layout="vertical">
+      <a-form :model="contact" name="validate_other" layout="vertical">
         <a-form-item name="nom" label="Nom">
           <a-input v-model:value="contact.nom" placeholder="" />
         </a-form-item>
         <a-form-item name="prenom" label="Prenom">
           <a-input v-model:value="contact.prenom" placeholder="" />
         </a-form-item>
-        <a-form-item name="telephone" label="Téléphone">
+        <a-form-item name="telephone" label="Téléphone 1">
           <a-input-group compact>
-            <a-select v-model:value="contact.prenom">
-              <a-select-option value="Option1">Option1</a-select-option>
-              <a-select-option value="Option2">Option2</a-select-option>
+            <a-select v-model:value="contact.telephone_1_type">
+              <a-select-option value="port">Portable</a-select-option>
+              <a-select-option value="fixe">Fixe</a-select-option>
+              <a-select-option value="urgence">Urgence</a-select-option>
             </a-select>
-            <a-input v-model:value="value6" style="width: 50%" />
+            <a-input v-model:value="contact.telephone_1_numero" style="width: 50%" />
           </a-input-group>
         </a-form-item>
-        <a-form-item
-            name="select-multiple"
-            label="Select[multiple]"
-            :rules="[{ required: true, message: 'Please select your favourite colors!', type: 'array' }]"
-        >
-          <a-select
-              v-model:value="formState['select-multiple']"
-              mode="multiple"
-              placeholder="Please select favourite colors"
-          >
-            <a-select-option value="red">Red</a-select-option>
-            <a-select-option value="green">Green</a-select-option>
-            <a-select-option value="blue">Blue</a-select-option>
-          </a-select>
+        <a-form-item name="telephone" label="Téléphone 2">
+          <a-input-group compact>
+            <a-select v-model:value="contact.telephone_2_type">
+              <a-select-option value="port">Portable</a-select-option>
+              <a-select-option value="fixe">Fixe</a-select-option>
+              <a-select-option value="urgence">Urgence</a-select-option>
+            </a-select>
+            <a-input v-model:value="contact.telephone_2_numero" style="width: 50%" />
+          </a-input-group>
         </a-form-item>
-
-        <a-form-item label="InputNumber">
-          <a-form-item name="input-number" no-style>
-            <a-input-number v-model:value="formState['input-number']" :min="1" :max="10" />
-          </a-form-item>
-          <span class="ant-form-text">machines</span>
+        <a-form-item name="select-multiple" label="Lien">
+          <a-select v-model:value="contact['lien']" mode="multiple" placeholder="Merci de selectionner un lien avec le résident">
+            <a-select-option value="conf">Personne de confiance</a-select-option>
+            <a-select-option value="enfant">Enfant</a-select-option>
+            <a-select-option value="parent">Parent</a-select-option>
+            <a-select-option value="frere-soeur">Frere, Soeur</a-select-option>
+            <a-select-option value="ami">Ami</a-select-option>
+          </a-select>
         </a-form-item>
 
         <a-form-item name="switch" label="Switch">
           <a-switch v-model:checked="formState.switch" />
         </a-form-item>
 
-        <a-form-item name="radio-group" label="Radio.Group">
-          <a-radio-group v-model:value="formState['radio-group']">
-            <a-radio value="a">item 1</a-radio>
-            <a-radio value="b">item 2</a-radio>
-            <a-radio value="c">item 3</a-radio>
-          </a-radio-group>
-        </a-form-item>
-
         <a-form-item name="commentaire" label="Commentaire">
-          <a-textarea v-model:value="contact.commentaire" placeholder="Basic usage" :rows="4" />
+          <a-textarea v-model:value="contact.commentaire" placeholder="Commentaire" :rows="4" />
         </a-form-item>
 
         <a-form-item label="Dragger">
@@ -111,8 +101,12 @@ const formState = reactive({
 const contact = reactive({
   nom: "",
   prenom: "",
-  lien: "",
+  lien: [],
   commentaire: "",
+  telephone_1_type: "",
+  telephone_1_numero: "",
+  telephone_2_type: "",
+  telephone_2_numero: "",
   telephone: []
 })
 

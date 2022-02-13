@@ -57,13 +57,27 @@
       <span>Comptabilité</span>
     </a-menu-item>
 
+    <a-menu-item key="12" to="/animation">
+      <template #icon>
+        <LikeOutlined />
+      </template>
+      <span>Animation</span>
+    </a-menu-item>
+
+    <a-menu-item key="13" to="/lingerie">
+      <template #icon>
+        <SkinOutlined />
+      </template>
+      <span>Lingerie</span>
+    </a-menu-item>
+
     <a-menu-divider/>
   </a-menu>
 </template>
 
 <script setup>
 
-import { PieChartOutlined, BarcodeOutlined, CarOutlined, CoffeeOutlined, HomeOutlined, SmileOutlined, TeamOutlined } from '@ant-design/icons-vue';
+import { PieChartOutlined, BarcodeOutlined, CarOutlined, CoffeeOutlined, HomeOutlined, SmileOutlined, TeamOutlined, SkinOutlined, LikeOutlined } from '@ant-design/icons-vue';
 import {useRouter} from "vue-router";
 
 // import {useUser} from "../store/user";

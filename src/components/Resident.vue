@@ -22,7 +22,10 @@
         </template>
       </a-step>
     </a-steps>
-    <ResidentContact/>
+    <ResidentContact v-if="current === 0"/>
+    <ResidentContrat v-if="current === 1"/>
+    <ResidentVisite v-if="current === 2"/>
+    <ResidentMenu/>
   </div>
 </template>
 
@@ -36,7 +39,10 @@ import {
 
 import {useRoute} from "vue-router";
 import {ref} from "vue";
-import ResidentContact from "./ResidentContact";
+import ResidentContact from "./resident/ResidentContact";
+import ResidentContrat from "./resident/ResidentContrat";
+import ResidentMenu from "./ResidentMenu";
+import ResidentVisite from "./resident/ResidentVisite";
 
 let route = useRoute()
 

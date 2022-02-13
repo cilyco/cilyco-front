@@ -9,6 +9,8 @@ import Stock from './components/Stock'
 import Comptabilite from './components/Comptabilite'
 import Agent from './components/Agent'
 import Utilisateur from './components/Utilisateur'
+import Animation from './components/Animation'
+import Lingerie from './components/Lingerie'
 
 const routes = [
     {
@@ -55,6 +57,16 @@ const routes = [
         path: '/utilisateur',
         name: 'Utilisateur',
         component: Utilisateur
+    },
+    {
+        path: '/animation',
+        name: 'Animation',
+        component: Animation
+    },
+    {
+        path: '/lingerie',
+        name: 'Lingerie',
+        component: Lingerie
     },
 ]
 const router = createRouter({
