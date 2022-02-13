@@ -62,7 +62,10 @@ import ResidentsHeader from "@/components/ResidentsHeader";
 import { v4 as uuidv4 } from 'uuid';
 import { createAvatar } from '@dicebear/avatars';
 import * as style from '@dicebear/big-ears-neutral';
-import {ref} from "vue";
+import { ref } from "vue";
+import { getResidents} from "@/api/fetch.js"
+
+let {data: residents} = await getResidents()
 
 const pagination = {
   onChange: (page) => {
@@ -73,18 +76,20 @@ const pagination = {
 
 const searchInput = ref("")
 
+
 const listData = [];
-for (let i = 0; i < 23; i++) {
+
+
+for (let i = 0; i < residents.length; i++) {
+  let resident = residents[i]
   let svg = createAvatar(style, {
     seed: uuidv4()
   });
   listData.push({
-    href: 'https://www.antdv.com/',
-    to: `/resident/${i}`,
-    title: `ant design vue part ${i}`,
+    to: `/resident/${resident.id}`,
+    title: `${resident.nom} ${resident.prenom}`,
     avatar: svg,
-    description:
-        'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+    description: `${resident.commentaire}`,
     content:
         'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
   });

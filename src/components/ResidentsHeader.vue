@@ -47,8 +47,6 @@
 
 import {ref, reactive} from "vue";
 
-import { api } from "@/api/fetch";
-
 const isAddResident = ref(false)
 
 const OpenAddResident = () => {
@@ -70,8 +68,8 @@ const resident = reactive({
 
 const postResident = async () => {
   console.log(resident)
-  const res = await api({method: 'post', data: resident})
-  console.log(res)
+  // const res = await api({method: 'post', data: resident})
+  //console.log(res)
 }
 
 </script>
