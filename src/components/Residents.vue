@@ -8,7 +8,7 @@
         enter-button="Recherche"
         @search="onSearch"
     />
-    <a-list item-layout="vertical" size="large" :pagination="pagination" :data-source="listData">
+    <a-list item-layout="vertical" size="large" :pagination="pagination" :data-source="residents">
       <template #renderItem="{ item }">
         <a-list-item key="item.title">
           <template #actions>
@@ -39,16 +39,16 @@
                 src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
             />
           </template>
-          <a-list-item-meta :description="item.description">
+          <a-list-item-meta :description="item.commentaire">
             <template #title>
-              <router-link :to="item.to">
-                {{ item.title }}
+              <router-link :to="`/resident/${item.id}`">
+                {{ item.prenom }} {{ item.nom }}
                 <a-tag color="warning">Admission</a-tag>
               </router-link>
             </template>
-            <template #avatar><a-avatar :src="item.avatar" /></template>
+            <template #avatar><a-avatar :src="item.id" /></template>
           </a-list-item-meta>
-          {{ item.content }}
+          {{ item.commentaire }}
         </a-list-item>
       </template>
     </a-list>
@@ -59,13 +59,16 @@
 <script setup>
 import { StarOutlined, LikeOutlined, MessageOutlined, LoginOutlined } from '@ant-design/icons-vue';
 import ResidentsHeader from "@/components/ResidentsHeader";
-import { v4 as uuidv4 } from 'uuid';
-import { createAvatar } from '@dicebear/avatars';
-import * as style from '@dicebear/big-ears-neutral';
 import { ref } from "vue";
 import { getResidents} from "@/api/fetch.js"
 
-let {data: residents} = await getResidents()
+let residents = ref([])
+const fetchResidents = async () => {
+  let {data} = await getResidents()
+  residents.value = data
+}
+
+fetchResidents()
 
 const pagination = {
   onChange: (page) => {
@@ -75,25 +78,6 @@ const pagination = {
 };
 
 const searchInput = ref("")
-
-
-const listData = [];
-
-
-for (let i = 0; i < residents.length; i++) {
-  let resident = residents[i]
-  let svg = createAvatar(style, {
-    seed: uuidv4()
-  });
-  listData.push({
-    to: `/resident/${resident.id}`,
-    title: `${resident.nom} ${resident.prenom}`,
-    avatar: svg,
-    description: `${resident.commentaire}`,
-    content:
-        'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-  });
-}
 
 </script>
 
