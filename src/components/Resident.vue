@@ -43,11 +43,18 @@ import ResidentContact from "./resident/ResidentContact";
 import ResidentContrat from "./resident/ResidentContrat";
 import ResidentMenu from "./ResidentMenu";
 import ResidentVisite from "./resident/ResidentVisite";
+import {getResident} from "@/api/resident";
 
 let route = useRoute()
 
 console.log(route.params.id)
 
+const resident = ref({})
+let useResident = async () => {
+  let {data} = await getResident(route.params.id)
+  resident.value = data
+}
+useResident()
 const current = ref(0);
 </script>
 

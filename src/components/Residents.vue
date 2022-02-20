@@ -60,7 +60,7 @@
 import { StarOutlined, LikeOutlined, MessageOutlined, LoginOutlined } from '@ant-design/icons-vue';
 import ResidentsHeader from "@/components/ResidentsHeader";
 import { ref } from "vue";
-import { getResidents} from "@/api/fetch.js"
+import { getResidents} from "@/api/resident.js"
 
 let residents = ref([])
 const fetchResidents = async () => {

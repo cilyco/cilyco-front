@@ -49,7 +49,7 @@
           </a-input-group>
         </a-form-item>
         <a-form-item name="select-multiple" label="Lien">
-          <a-select v-model:value="contact['lien']" mode="multiple" placeholder="Merci de selectionner un lien avec le résident">
+          <a-select v-model:value="contact.lien" mode="multiple" placeholder="Merci de selectionner un lien avec le résident">
             <a-select-option value="conf">Personne de confiance</a-select-option>
             <a-select-option value="enfant">Enfant</a-select-option>
             <a-select-option value="parent">Parent</a-select-option>
@@ -58,8 +58,8 @@
           </a-select>
         </a-form-item>
 
-        <a-form-item name="switch" label="Switch">
-          <a-switch v-model:checked="formState.switch" />
+        <a-form-item name="switch" label="Actif">
+          <a-switch v-model:checked="contact.actif" />
         </a-form-item>
 
         <a-form-item name="commentaire" label="Commentaire">
@@ -107,7 +107,7 @@ const contact = reactive({
   telephone_1_numero: "",
   telephone_2_type: "",
   telephone_2_numero: "",
-  telephone: []
+  actif: true
 })
 
 const columns = [{
