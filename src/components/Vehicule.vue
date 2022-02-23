@@ -2,25 +2,25 @@
     <a-row>
       <a-col :span="6">
         <a-button type="dashed" block style="margin-bottom: 10px" @click="visible = true">Ajout véhicule</a-button>
-        <a-card hoverable v-for="vehicule in vehicules" :key="vehicule.id" style="margin-bottom: 10px">
-          <template #actions>
-            <setting-outlined key="setting" />
-            <edit-outlined key="edit" />
-            <ellipsis-outlined key="ellipsis" />
-          </template>
-          <a-card-meta :title="vehicule.modele" :description="vehicule.marque">
-            <template #avatar>
-              <a-avatar size="large">
-                <template #icon>
-                  <UserOutlined />
+
+        <a-list item-layout="horizontal" :data-source="vehicules" :loading="isLoading">
+          <template #renderItem="{ item }" style="background-color: grey; padding: 5px">
+            <a-list-item>
+              <a-list-item-meta :description="item.commentaire">
+                <template #title>
+                  <a @click="selected = item.id">{{ item.marque }} {{ item.modele }}</a>
                 </template>
-              </a-avatar>
-            </template>
-          </a-card-meta>
-        </a-card>
+                <template #avatar>
+                  <a-avatar size="large" :style="{'background-color': item.couleur || 'grey'}" />
+                </template>
+              </a-list-item-meta>
+            </a-list-item>
+          </template>
+        </a-list>
       </a-col>
       <a-col :span="18">
-        Vehicule
+        <a-calendar @panelChange="onPanelChange" @select="onSelect"></a-calendar>
+        <VehiculeData :id="selected"/>
       </a-col>
     </a-row>
   <a-drawer
@@ -43,6 +43,33 @@
       <a-form-item name="kilometrage" label="Kilometrage">
         <a-input-number v-model:value="vehicule.kilometrage" addon-after="Km"></a-input-number>
       </a-form-item>
+      <a-form-item name="couleur" label="Couleur">
+        <span style="margin-right: 24px">
+          <a-badge :dot="vehicule.couleur == 'black'">
+            <a-avatar shape="square" style="background-color: black; cursor: pointer" @click="vehicule.couleur = 'black'"/>
+          </a-badge>
+        </span>
+        <span style="margin-right: 24px; ">
+          <a-badge :dot="vehicule.couleur == 'white'">
+            <a-avatar shape="square" style="background-color: white; cursor: pointer; border: black solid 1px" @click="vehicule.couleur = 'white'"/>
+          </a-badge>
+        </span>
+        <span style="margin-right: 24px">
+          <a-badge :dot="vehicule.couleur == 'red'">
+            <a-avatar shape="square" style="background-color: red; cursor: pointer" @click="vehicule.couleur = 'red'"/>
+          </a-badge>
+        </span>
+        <span style="margin-right: 24px">
+          <a-badge :dot="vehicule.couleur == 'blue'">
+            <a-avatar shape="square" style="background-color: blue; cursor: pointer" @click="vehicule.couleur = 'blue'"/>
+          </a-badge>
+        </span>
+        <span style="margin-right: 24px">
+          <a-badge :dot="vehicule.couleur == 'green'">
+            <a-avatar shape="square" style="background-color: green; cursor: pointer" @click="vehicule.couleur = 'green'"/>
+          </a-badge>
+        </span>
+      </a-form-item>
 
       <a-form-item name="commentaire" label="Commentaire">
         <a-textarea v-model:value="vehicule.commentaire" placeholder="Commentaire" :rows="4" />
@@ -56,9 +83,9 @@
 </template>
 
 <script setup>
-import { SettingOutlined, EditOutlined, EllipsisOutlined, UserOutlined } from '@ant-design/icons-vue';
 import {reactive, ref} from "vue";
 import {getVehicules, setVehicule} from "@/api/vehicule";
+import VehiculeData from "./VehiculeData";
 
 const visible = ref(false)
 
@@ -67,22 +94,44 @@ const vehicule = reactive({
   marque: "",
   kilometrage: 0,
   immatriculation: "",
-  etat: ""
+  etat: "",
+  couleur: ""
 })
+
+const onPanelChange = (date, mode) => {
+  console.log("PANEL CHANGE", date, mode)
+}
+
+const onSelect = (date) => {
+  console.log("SELECT DATE", date)
+}
 
 const vehicules = ref([]);
 
-let getVehicule = async () => {
+const selected = ref(null)
+
+const isLoading = ref(true)
+
+const wait = async () => {
+  setTimeout(() => {
+    return true
+  }, 4000)
+}
+
+const getVehicule = async () => {
+  await wait()
   let {data} = await getVehicules()
   vehicules.value = data
+  isLoading.value = false
+}
+
+const postVehicule = async () => {
+  await setVehicule(vehicule)
+  visible.value = false
+  getVehicule()
 }
 
 getVehicule()
-
-const postVehicule = () => {
-  setVehicule(vehicule)
-  getVehicule()
-}
 
 </script>
 

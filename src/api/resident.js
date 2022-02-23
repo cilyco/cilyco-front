@@ -6,6 +6,15 @@ let getResidents = () => {
         url: '/resident',
     })
 }
+
+let addResident = (data) => {
+    return api({
+        method: 'post',
+        url: '/resident',
+        data
+    })
+}
+
 let getResident = (id) => {
     return api({
         method: 'get',
@@ -17,4 +26,5 @@ export {
     api,
     getResidents,
     getResident,
+    addResident
 }

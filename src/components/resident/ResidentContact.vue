@@ -30,22 +30,22 @@
         </a-form-item>
         <a-form-item name="telephone" label="Téléphone 1">
           <a-input-group compact>
-            <a-select v-model:value="contact.telephone_1_type">
+            <a-select v-model:value="contact.telephone_1_type" style="width: 40%">
               <a-select-option value="port">Portable</a-select-option>
               <a-select-option value="fixe">Fixe</a-select-option>
               <a-select-option value="urgence">Urgence</a-select-option>
             </a-select>
-            <a-input v-model:value="contact.telephone_1_numero" style="width: 50%" />
+            <a-input v-model:value="contact.telephone_1_numero" style="width: 60%" />
           </a-input-group>
         </a-form-item>
         <a-form-item name="telephone" label="Téléphone 2">
           <a-input-group compact>
-            <a-select v-model:value="contact.telephone_2_type">
+            <a-select v-model:value="contact.telephone_2_type" style="width: 40%">
               <a-select-option value="port">Portable</a-select-option>
               <a-select-option value="fixe">Fixe</a-select-option>
               <a-select-option value="urgence">Urgence</a-select-option>
             </a-select>
-            <a-input v-model:value="contact.telephone_2_numero" style="width: 50%" />
+            <a-input v-model:value="contact.telephone_2_numero" style="width: 60%" />
           </a-input-group>
         </a-form-item>
         <a-form-item name="select-multiple" label="Lien">

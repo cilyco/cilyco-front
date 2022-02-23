@@ -1,6 +1,6 @@
 <template>
   <div>
-
+    Soins
   </div>
 </template>
 
