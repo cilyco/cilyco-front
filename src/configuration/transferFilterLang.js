@@ -1,1 +1,0 @@
-export let transferLang = { itemUnit: 'resident', itemsUnit: 'residents', notFoundContent: 'La liste est vide', searchPlaceholder: 'Rechercher' }

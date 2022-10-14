@@ -1,52 +1,85 @@
+<script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router'
+import HelloWorld from './components/HelloWorld.vue'
+</script>
+
 <template>
-  <Layout>
-    <a-affix>
-      <LayoutHeader style=" background-color: darkgrey; justify-items: right; justify-content: right; display: flex" >
-        <div style="height: 64px; width: 100%; justify-content: center; padding: 10px">
-          Cilyco
-        </div>
-        <div>
-            <span style="margin-left: 24px">
-              <a-badge :dot="true">
-                <a-avatar shape="square">
-                  <template #icon><MessageOutlined /></template>
-                </a-avatar>
-              </a-badge>
-            </span>
-        </div>
-        <div>
-            <span style="margin-left: 24px; cursor: pointer">
-              <a-badge @click="router.push('/utilisateur')">
-                <a-avatar shape="square">
-                  <template #icon><UserOutlined /></template>
-                </a-avatar>
-              </a-badge>
-            </span>
-        </div>
-      </LayoutHeader>
-    </a-affix>
-    <Layout>
-      <LayoutSider breakpoint="lg" collapsed-width="0">
-        <TheSidebar/>
-      </LayoutSider>
+  <header>
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
-      <LayoutContent style="padding: 24px;">
-        <router-view/>
-        <TheSideEvent/>
-      </LayoutContent>
-    </Layout>
-  </Layout>
+    <div class="wrapper">
+      <HelloWorld msg="You did it!" />
 
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
+      </nav>
+    </div>
+  </header>
 
+  <RouterView />
 </template>
 
-<script setup>
-import { Layout, LayoutSider, LayoutHeader, LayoutContent } from "ant-design-vue";
-import TheSidebar from "./components/TheSidebar";
-import { UserOutlined, MessageOutlined } from '@ant-design/icons-vue';
-import {useRouter} from "vue-router";
-import TheSideEvent from "./components/TheSideEvent";
+<style scoped>
+header {
+  line-height: 1.5;
+  max-height: 100vh;
+}
 
-const router = useRouter()
+.logo {
+  display: block;
+  margin: 0 auto 2rem;
+}
 
-</script>
+nav {
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+nav a.router-link-exact-active {
+  color: var(--color-text);
+}
+
+nav a.router-link-exact-active:hover {
+  background-color: transparent;
+}
+
+nav a {
+  display: inline-block;
+  padding: 0 1rem;
+  border-left: 1px solid var(--color-border);
+}
+
+nav a:first-of-type {
+  border: 0;
+}
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  nav {
+    text-align: left;
+    margin-left: -1rem;
+    font-size: 1rem;
+
+    padding: 1rem 0;
+    margin-top: 1rem;
+  }
+}
+</style>
