@@ -112,14 +112,7 @@ const selected = ref(null)
 
 const isLoading = ref(true)
 
-const wait = async () => {
-  setTimeout(() => {
-    return true
-  }, 4000)
-}
-
 const getVehicule = async () => {
-  await wait()
   let {data} = await getVehicules()
   vehicules.value = data
   isLoading.value = false
@@ -128,13 +121,9 @@ const getVehicule = async () => {
 const postVehicule = async () => {
   await setVehicule(vehicule)
   visible.value = false
-  getVehicule()
+  await getVehicule()
 }
 
 getVehicule()
 
 </script>
-
-<style scoped>
-
-</style>

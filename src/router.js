@@ -7,7 +7,7 @@ import Resident from './components/Resident'
 import Vehicule from './components/Vehicule'
 import Stock from './components/Stock'
 import Comptabilite from './components/Comptabilite'
-import Agent from './components/Agent'
+import AgentList from './view/agent/AgentList'
 import Utilisateur from './components/Utilisateur'
 import Animation from './components/Animation'
 import Lingerie from './components/Lingerie'
@@ -49,9 +49,9 @@ const routes = [
         component: Stock
     },
     {
-        path: '/agent',
-        name: 'Agent',
-        component: Agent
+        path: '/agents',
+        name: 'Agents',
+        component: AgentList
     },
     {
         path: '/utilisateur',

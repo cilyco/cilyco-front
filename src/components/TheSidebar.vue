@@ -24,7 +24,7 @@
         <TeamOutlined />
       </template>
       <template #title>Agents</template>
-      <a-menu-item key="5" to="/">Contrat</a-menu-item>
+      <a-menu-item key="5" to="/agents">Liste</a-menu-item>
       <a-menu-item key="6" to="/">Temps</a-menu-item>
       <a-menu-item key="7" to="/">Option 1</a-menu-item>
     </a-sub-menu>
