@@ -1,34 +1,34 @@
 <template>
-    <a-row>
-      <a-col :span="6">
-        <a-button type="dashed" block style="margin-bottom: 10px" @click="visible = true">Ajout véhicule</a-button>
+  <a-row>
+    <a-col :span="6">
+      <a-button type="dashed" block style="margin-bottom: 10px" @click="visible = true">Ajout véhicule</a-button>
 
-        <a-list item-layout="horizontal" :data-source="vehicules" :loading="isLoading">
-          <template #renderItem="{ item }" style="background-color: grey; padding: 5px">
-            <a-list-item>
-              <a-list-item-meta :description="item.commentaire">
-                <template #title>
-                  <a @click="selected = item.id">{{ item.marque }} {{ item.modele }}</a>
-                </template>
-                <template #avatar>
-                  <a-avatar size="large" :style="{'background-color': item.couleur || 'grey'}" />
-                </template>
-              </a-list-item-meta>
-            </a-list-item>
-          </template>
-        </a-list>
-      </a-col>
-      <a-col :span="18">
-        <a-calendar @panelChange="onPanelChange" @select="onSelect"></a-calendar>
-        <VehiculeData :id="selected"/>
-      </a-col>
-    </a-row>
+      <a-list item-layout="horizontal" :data-source="vehicules" :loading="isLoading">
+        <template #renderItem="{ item }" style="background-color: grey; padding: 5px">
+          <a-list-item>
+            <a-list-item-meta :description="item.commentaire">
+              <template #title>
+                <a @click="selected = item.id">{{ item.marque }} {{ item.modele }}</a>
+              </template>
+              <template #avatar>
+                <a-avatar size="large" :style="{'background-color': item.couleur || 'grey'}" />
+              </template>
+            </a-list-item-meta>
+          </a-list-item>
+        </template>
+      </a-list>
+    </a-col>
+    <a-col :span="18">
+      <a-calendar @panelChange="onPanelChange" @select="onSelect"></a-calendar>
+      <VehiculeData :id="selected"/>
+    </a-col>
+  </a-row>
   <a-drawer
-      v-model:visible="visible"
-      style="color: red"
-      title="Ajout véhicule"
-      placement="right"
-      width="550"
+    v-model:visible="visible"
+    style="color: red"
+    title="Ajout véhicule"
+    placement="right"
+    width="550"
   >
     <a-form :model="vehicule" name="validate_other" layout="vertical">
       <a-form-item name="marque" label="Marque">
@@ -85,7 +85,7 @@
 <script setup>
 import {reactive, ref} from "vue";
 import {getVehicules, setVehicule} from "@/api/vehicule";
-import VehiculeData from "./VehiculeData";
+import VehiculeData from "../components/VehiculeData";
 
 const visible = ref(false)
 

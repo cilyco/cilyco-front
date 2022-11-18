@@ -1,7 +1,5 @@
 <template>
-  <div>
-    Lingerie
-  </div>
+
 </template>
 
 <script setup>

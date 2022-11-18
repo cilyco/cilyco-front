@@ -46,9 +46,6 @@ import ResidentVisite from "./resident/ResidentVisite";
 import {getResident} from "@/api/resident";
 
 let route = useRoute()
-
-console.log(route.params.id)
-
 const resident = ref({})
 let useResident = async () => {
   let {data} = await getResident(route.params.id)

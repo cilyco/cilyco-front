@@ -4,13 +4,13 @@ import Home from './components/Home.vue'
 import Cuisine from './components/Cuisine'
 import ResidentsList from './view/resident/ResidentsList'
 import Resident from './components/Resident'
-import Vehicule from './components/Vehicule'
+import Vehicule from './view/Vehicule'
 import Stock from './components/Stock'
 import Comptabilite from './components/Comptabilite'
 import AgentList from './view/agent/AgentList'
 import Utilisateur from './components/Utilisateur'
 import Animation from './components/Animation'
-import Lingerie from './components/Lingerie'
+import Lingerie from './view/Lingerie'
 
 const routes = [
     {
