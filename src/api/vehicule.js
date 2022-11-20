@@ -1,20 +1,21 @@
 import { api } from './fetch'
 
-let getVehicules = () => {
-    return api({
-        method: 'get',
-        url: `/vehicule`,
-    })
+export const getVehicules = () => {
+  return api({
+    method: 'get',
+    url: `/vehicule`,
+  })
 }
-let setVehicule = (data) => {
+export const getVehicule = (id) => {
+  return api({
+    method: 'get',
+    url: `/vehicule/${id}`,
+  })
+}
+export const setVehicule = (data) => {
     return api({
         method: 'post',
         url: `/vehicule`,
         data
     })
-}
-
-export {
-    getVehicules,
-    setVehicule
 }

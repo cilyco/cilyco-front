@@ -19,8 +19,8 @@
       </a-list>
     </a-col>
     <a-col :span="18">
-      <a-calendar @panelChange="onPanelChange" @select="onSelect"></a-calendar>
-      <VehiculeData :id="selected"/>
+      <a-calendar v-if="false" @panelChange="onPanelChange" @select="onSelect"/>
+      <VehiculeForm v-if="selected" :id="selected" :key="selected"/>
     </a-col>
   </a-row>
   <a-drawer
@@ -85,7 +85,7 @@
 <script setup>
 import {reactive, ref} from "vue";
 import {getVehicules, setVehicule} from "@/api/vehicule";
-import VehiculeData from "../components/VehiculeData";
+import VehiculeForm from "../components/vehicule/VehiculeForm";
 
 const visible = ref(false)
 
