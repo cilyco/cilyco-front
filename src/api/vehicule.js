@@ -12,10 +12,19 @@ export const getVehicule = (id) => {
     url: `/vehicule/${id}`,
   })
 }
-export const setVehicule = (data) => {
-    return api({
-        method: 'post',
-        url: `/vehicule`,
-        data
-    })
+
+export const addVehicule = (data) => {
+  return api({
+    method: 'post',
+    url: `/vehicule`,
+    data
+  })
+}
+
+export const editVehicule = (data) => {
+  return api({
+    method: 'patch',
+    url: `/vehicule/${data.id}`,
+    data
+  })
 }

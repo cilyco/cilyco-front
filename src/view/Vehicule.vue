@@ -6,6 +6,9 @@
       <a-list item-layout="horizontal" :data-source="vehicules" :loading="isLoading">
         <template #renderItem="{ item }" style="background-color: grey; padding: 5px">
           <a-list-item>
+            <template #actions>
+              <a @click="carEdit(item)" key="list-loadmore-edit">Modifier</a>
+            </template>
             <a-list-item-meta :description="item.commentaire">
               <template #title>
                 <a @click="selected = item.id">{{ item.marque }} {{ item.modele }}</a>
@@ -19,10 +22,15 @@
       </a-list>
     </a-col>
     <a-col :span="18">
-      <a-calendar v-if="false" @panelChange="onPanelChange" @select="onSelect"/>
+      <a-calendar v-if="!selected" @panelChange="onPanelChange" @select="onSelect"/>
       <VehiculeForm v-if="selected" :id="selected" :key="selected"/>
     </a-col>
   </a-row>
+  <a-modal v-model:visible="addEvent" title="Basic Modal" @ok="handleOk">
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+  </a-modal>
   <a-drawer
     v-model:visible="visible"
     style="color: red"
@@ -83,20 +91,28 @@
 </template>
 
 <script setup>
-import {reactive, ref} from "vue";
-import {getVehicules, setVehicule} from "@/api/vehicule";
+import { ref } from "vue";
+import { addVehicule, getVehicules, editVehicule } from "@/api/vehicule";
 import VehiculeForm from "../components/vehicule/VehiculeForm";
 
 const visible = ref(false)
+const addEvent = ref(false)
 
-const vehicule = reactive({
+const vehicule = ref({
   modele: "",
   marque: "",
   kilometrage: 0,
   immatriculation: "",
   etat: "",
-  couleur: ""
+  couleur: "",
+  commentaire: "",
 })
+
+const carEdit = (car) => {
+  console.log(car)
+  vehicule.value = car;
+  visible.value = true
+}
 
 const onPanelChange = (date, mode) => {
   console.log("PANEL CHANGE", date, mode)
@@ -119,7 +135,11 @@ const getVehicule = async () => {
 }
 
 const postVehicule = async () => {
-  await setVehicule(vehicule)
+  if (vehicule.value.id) {
+    await editVehicule(vehicule.value)
+  } else {
+    await addVehicule(vehicule.value)
+  }
   visible.value = false
   await getVehicule()
 }

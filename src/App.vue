@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <Layout style="height: 100%">
     <a-affix>
       <LayoutHeader style=" background-color: darkgrey; justify-items: right; justify-content: right; display: flex" >
         <div style="height: 64px; width: 100%; justify-content: center; padding: 10px">

@@ -1,6 +1,13 @@
 <template>
-  {{props.id}}
-  {{vehicule}}
+  <a-row>
+    <a-col :span="12">
+      {{vehicule}}
+    </a-col>
+    <a-col :span="12">
+      MAPS
+    </a-col>
+  </a-row>
+
 </template>
 
 <script setup>
