@@ -9,7 +9,7 @@ import Stock from './components/Stock'
 import Comptabilite from './components/Comptabilite'
 import AgentList from './view/agent/AgentList'
 import Utilisateur from './components/Utilisateur'
-import Animation from './components/Animation'
+import Animation from './view/Animation'
 import Lingerie from './view/Lingerie'
 
 const routes = [

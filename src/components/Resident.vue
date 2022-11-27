@@ -1,5 +1,11 @@
 <template>
   <div>
+    <a-page-header
+      style="border: 1px solid rgb(235, 237, 240)"
+      :title="resident.nom + ' ' + resident.prenom"
+      sub-title=""
+      @back="() => null"
+    />
     <a-steps v-model:current="current" type="navigation" size="small" percent="10">
       <a-step status="finish" title="Contact" sub-title="Le 20/01/2010">
         <template #icon>
