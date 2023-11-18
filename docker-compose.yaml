@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+  dev:
+    container_name: vue-watch
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+    env_file:
+      - .env
+    ports:
+      - 8080:8080
