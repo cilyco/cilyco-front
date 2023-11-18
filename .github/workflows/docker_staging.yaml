@@ -31,6 +31,6 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          target: dev
+          target: build
           push: true
           tags: front
