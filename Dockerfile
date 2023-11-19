@@ -10,7 +10,7 @@ CMD [ "npm", "run", "dev" ]
 
 # Production Server
 # build stage
-FROM node:lts-alpine as build
+FROM node:lts-alpine as prod
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
