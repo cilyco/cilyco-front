@@ -1,5 +1,5 @@
 
-name: Publish Docker image staging
+name: Build for staging
 
 on:
   push:
@@ -25,6 +25,6 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          target: build
+          target: dev
           push: true
           tags: rmingondev/cilyco:front
